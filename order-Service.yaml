@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: order-service
+  name: order-service
+spec:
+  ports:
+  - port: 1234
+    protocol: TCP
+    targetPort: 9999
+    name: vanilla
+  - port: 1235
+    protocol: TCP
+    targetPort: 8888
+    name: mocha
+  selector:
+    app: order-menu
+  type: ClusterIP

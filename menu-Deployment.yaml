@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: menu-deployment
+  labels:
+    app: menu-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: order-menu
+  template:
+    metadata:
+      labels:
+        app: order-menu
+    spec:
+      containers:
+      - name: mocha-container
+        image: hashicorp/http-echo:1.0.0
+        args:
+        - "-text=Hot Mocha Latte!"
+        - "-listen=:9999"
+      - name: vanilla-container
+        image: hashicorp/http-echo:1.0.0
+        args:
+        - "-text=Hot Vanilla Latte!"
+        - "-listen=:8888"
